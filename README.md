@@ -1,2 +1,2 @@
-# Malduino
-Malduino Paylods Repository
+# MalduinoW
+MalduinoW BadUSB Payloads Repository.
