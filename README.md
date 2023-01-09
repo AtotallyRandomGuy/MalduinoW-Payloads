@@ -8,5 +8,7 @@ The basics of BadUSB script can be found here: https://docs.maltronics.com/badus
 
 Note: I am not affiliated with Maltronics in any way. This is a mere collection of helpful or fun payloads for the Malduino series of BadUSBs.
 
+Also, I am not liable for any damages you may or may not cause with these payloads. That is your choice to use the Malduino, which is sold as a tool, in a bad way. Tools can be used for good, or bad. Choose wisely.
+
 Currently WIP.
 
