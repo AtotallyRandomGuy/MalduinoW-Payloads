@@ -6,4 +6,7 @@ Links on the MalduinoW to learn more: [YouTube](https://youtu.be/qs9gERSV-bY), [
 
 The basics of BadUSB script can be found here: https://docs.maltronics.com/badusb-scripting/the-basics
 
-WIP.
+Note: I am not affiliated with Maltronics in any way. This is a mere collection of helpful or fun payloads for the Malduino series of BadUSBs.
+
+Currently WIP.
+
