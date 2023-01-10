@@ -1,5 +1,6 @@
-# MalduinoW
-A MalduinoW (or any malduino product) BadUSB Payloads Repository. Add your own scripts, make some, or browse for something new.
+# A BadUSB Payloads Repository.
+Add your own scripts, make some, or browse for something new.
+Made specifically for the Malduino and MalduinoW.
 
 The MalduinoW is a new take on the BadUSB market, offering your standard BadUSB capabilities, but adding wireless capabilities. Remotely execute, edit, download, and delete scripts with the simple online user interface.
 Links on the MalduinoW to learn more: [YouTube](https://youtu.be/qs9gERSV-bY), [Maltronics Website](https://maltronics.com/collections/malduinos/products/malduino-w)
