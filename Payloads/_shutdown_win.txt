@@ -1,0 +1,25 @@
+LED 255 0 0
+
+LOCALE US
+
+DELAY 200
+
+WINDOWS r
+
+DELAY 150
+
+STRING shutdown.exe /s /t 01
+
+ENTER
+
+DELAY 300
+
+// STRING shutdown 
+
+ENTER
+
+// STRING exit
+
+// ENTER
+
+LED 255 0 0
