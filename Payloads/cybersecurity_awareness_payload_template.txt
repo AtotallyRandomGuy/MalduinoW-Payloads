@@ -1,9 +1,0 @@
-LED 0 0 0
-LOCALE US
-DELAY 2000
-WINDOWS
-DELAY 100
-REM Put in the string below the website that will be pulled up.
-STRING https://www.example.com
-DELAY 100
-ENTER
